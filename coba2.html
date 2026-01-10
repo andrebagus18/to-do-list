@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=list_alt"
+    />
+    <style>
+      #listData {
+        height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ccc;
+        padding: 8px;
+      }
+      .item {
+        border-bottom: 1px solid #ddd;
+        padding: 5px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <form id="formData">
+      <input type="text" id="nama" placeholder="Nama" />
+
+      <input type="radio" name="jk" value="Laki-laki" /> Laki-laki
+      <input type="radio" name="jk" value="Perempuan" /> Perempuan
+
+      <button type="button" onclick="tambah()">Tambah</button>
+    </form>
+
+    <hr />
+    <span class="material-symbols-outlined"> list_alt </span>
+
+    <div id="listData"></div>
+
+    <script>
+      let counter = 1;
+
+      function tambah() {
+        let nama = document.getElementById("nama").value;
+        let radios = document.getElementsByName("jk");
+        let jk = "";
+
+        // LOOP UNTUK RADIO
+        for (let i = 0; i < radios.length; i++) {
+          if (radios[i].checked) {
+            jk = radios[i].value;
+            break;
+          }
+        }
+
+        if (nama === "" || jk === "") {
+          alert("Lengkapi data!");
+          return;
+        }
+
+        // LOOP UNTUK MEMBUAT TAMPILAN BERULANG
+        let list = document.getElementById("listData");
+
+        let div = document.createElement("div");
+        div.className = "item";
+
+        let teks = "";
+        let data = ["Nama: " + nama, "JK: " + jk];
+
+        for (let i = 0; i < data.length; i++) {
+          teks += data[i] + "<br>";
+        }
+
+        div.innerHTML = counter++ + ".<br>" + teks;
+        list.appendChild(div);
+
+        // reset
+        document.getElementById("nama").value = "";
+        for (let i = 0; i < radios.length; i++) {
+          radios[i].checked = false;
+        }
+
+        // auto scroll
+        list.scrollTop = list.scrollHeight;
+      }
+    </script>
+  </body>
+</html>

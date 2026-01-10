@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <form id="formData">
+      <label>
+        Nama:
+        <input type="text" name="nama" id="orang" /> </label
+      ><br /><br />
+
+      <label>
+        Jenis Kelamin:
+        <input type="radio" name="jk" id="jk" value="Laki-laki" /> Laki-laki
+        <input type="radio" name="jk" id="jkp" value="Perempuan" />
+        Perempuan </label
+      ><br /><br />
+
+      <button type="submit">Simpan</button>
+    </form>
+
+    <hr />
+
+    <div id="hasil">
+      <p>Nama: <span id="outNama">-</span></p>
+      <p>Jenis Kelamin: <span id="outJK">-</span></p>
+    </div>
+
+    <script>
+      document
+        .getElementById("formData")
+        .addEventListener("submit", function (e) {
+          e.preventDefault(); // mencegah reload
+
+          let nama = document.querySelector("#orang").value;
+          // let level = this.level.value;
+          let jk = document.getElementsByName("jk");
+          let valueLevel = "";
+          for (const level of jk) {
+            if (level.checked) {
+              valueLevel = level.value;
+              break;
+            }
+          }
+
+          document.getElementById("outNama").innerHTML = nama;
+          document.getElementById("outJK").innerHTML = valueLevel;
+
+          //   // ambil nilai input text
+          //   let nama = this.nama.value;
+
+          //   // ambil nilai radio
+          // let jk = this.querySelector('input[name="jk"]:checked');
+
+          //   document.getElementById("outNama").textContent = nama;
+          //   document.getElementById("outJK").textContent = jk ? jk.value : "-";
+        });
+    </script>
+  </body>
+</html>
