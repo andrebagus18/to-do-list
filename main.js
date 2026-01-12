@@ -3,14 +3,7 @@ const modal = document.querySelector(".create");
 const closeButton = document.querySelector(".close");
 const newData = document.querySelector("#newData");
 const tableToday = document.querySelector("#tableToday");
-
-// Tampilkan modal create
-buttonCreate.addEventListener("click", () => {
-  modal.classList.toggle("active");
-  closeButton.addEventListener("click", () => {
-    modal.classList.remove("active");
-  });
-});
+const tabCreate = document.querySelector(".tab-create");
 
 let months = [
   "January",
@@ -42,6 +35,14 @@ let thisDay = days[today.getDay()];
 let year = today.getFullYear();
 let thisToday = thisDay + "," + " " + day + " " + month + " " + year;
 document.getElementById("date").innerHTML = thisToday;
+
+// Tampilkan modal create
+buttonCreate.addEventListener("click", () => {
+  modal.classList.toggle("active");
+  closeButton.addEventListener("click", () => {
+    modal.classList.remove("active");
+  });
+});
 
 // inisialisasi form
 newData.addEventListener("submit", (e) => {
@@ -75,34 +76,10 @@ newData.addEventListener("submit", (e) => {
   console.log(newTask);
   localStorage.setItem("tableData", JSON.stringify(tableData));
 
+  tabCreate.classList.toggle("create-hidden");
   window.location.href = "index.html";
-  dataForm.reset();
+  newData.reset();
 });
-
-// buat element baru
-// let iniToday = document.querySelector(".ini-today");
-// let listToday = document.querySelector(".list-today");
-// let input = document.createElement("input");
-// input.type = "checkbox";
-// input.id = "today1";
-
-// let div = document.createElement("div");
-// div.className = "kolom";
-
-// let buttonCheck = document.createElement("button");
-// buttonCheck.className = "btnCheck";
-// buttonCheck.width = 4;
-// buttonCheck.height = 4;
-
-// let linkList = document.createElement("a");
-// linkList.href = "#";
-// linkList.className = "list";
-// let img = document.createElement("img");
-// img.src = "icon/list-icon.png";
-// img.alt = "icon-list";
-// img.width = 3;
-// img.height = 4;
-// linkList.appendChild(img);
 
 const tableData = JSON.parse(localStorage.getItem("tableData")) || [];
 const tbody = tableToday.getElementsByTagName("tbody")[0];
@@ -111,13 +88,14 @@ tableData.forEach((item) => {
   // console.log(newRow);
   let cellBtn = newRow.insertCell();
   let buttonCheck = document.createElement("button");
-  buttonCheck.className = "btnCheck";
-  buttonCheck.style.width = "10px";
-  buttonCheck.style.height = "10px";
-  buttonCheck.style.borderRadius = "5px";
-  buttonCheck.style.border = "1px solid gray";
-  buttonCheck.style.backgroundColor = "none";
+  buttonCheck.classList.add("btnCheck");
+  buttonCheck.style.width = "15px";
+  buttonCheck.style.height = "15px";
+  buttonCheck.style.borderRadius = "3px";
+  buttonCheck.style.border = "1.5px solid gray";
+  buttonCheck.style.backgroundColor = "white";
   buttonCheck.style.cursor = "pointer";
+  buttonCheck.style.border = "none";
   cellBtn.appendChild(buttonCheck);
   // console.log(buttonCheck);
   newRow.insertCell().textContent = item.newTask;
@@ -125,16 +103,39 @@ tableData.forEach((item) => {
   let cellList = newRow.insertCell();
   let linkList = document.createElement("a");
   linkList.href = "#";
-  linkList.className = "list";
+  linkList.classList.add("list");
   let img = document.createElement("img");
   img.src = "icon/list-icon.png";
   img.alt = "icon-list";
   img.width = 20;
   img.height = 20;
+  img.style.border = "none";
   linkList.appendChild(img);
   cellList.appendChild(linkList);
   // console.log(linkList);
 });
+
+const delet = document.querySelector("#hapus");
+delet.addEventListener("click", () => {
+  // hapus semua data dari localStorage
+  localStorage.clear("tableData");
+  // hapus semua baris dari table
+  const tbody = tableToday.getElementsByTagName("tbody")[0];
+  while (tbody.firstChild) {
+    //loop anak pertama dari tbody
+    tbody.removeChild(tbody.firstChild); //remove/hapus anak pertama dan ulangi sampai loop selesai
+  }
+});
+
+const buttonCheck = document.querySelector(".btnCheck");
+if (buttonCheck) {
+  buttonCheck.addEventListener("click", () => {
+    buttonCheck.forEach((item) => {
+      item.innerHTML = "&#10004;";
+      item.style.backgroundColor = "#cbcbcb";
+    });
+  });
+}
 
 // tableData.forEach((item, index) => {
 //   const newRow = tbody.insertRow(0);

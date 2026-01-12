@@ -63,7 +63,6 @@ main {
 }
 
 .tab-create {
-  z-index: 99;
   width: auto;
   display: flex;
   flex-direction: column;
@@ -71,30 +70,8 @@ main {
   justify-content: center;
 }
 
-.btn-new {
-  width: 100%;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.btn-create {
-  width: 50%;
-  height: 40px;
-  border-radius: 10px;
-  border: none;
-  background-color: #007bff;
-  font-family: "Dm Sans", serif;
-  font-weight: 400;
-  font-size: 16px;
-  letter-spacing: 0.2px;
-  color: white;
-}
-
-.btn-create:hover {
-  background-color: #0163cb;
+.create-hidden {
+  display: none;
 }
 
 .create {
@@ -104,14 +81,10 @@ main {
 
 .active {
   display: block;
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
-
-.create-new {
-  width: auto;
-  height: 300px;
+  position: absolute;
+  width: 350px;
+  height: auto;
+  top: 100px;
 }
 
 .create-task {
@@ -124,21 +97,23 @@ main {
   flex-direction: column;
   justify-content: center;
   padding: 10px;
-  position: relative;
-  bottom: 120px;
 }
 
 .close {
   width: 24px;
-  height: 24px;
+  height: 20px;
   position: relative;
-  left: 320px;
+  left: 300px;
   bottom: 10px;
 }
 
 .btn-close {
   background-color: white;
   border: none;
+  font-family: "DM Sans", serif;
+  font-weight: 300;
+  font-size: 20px;
+  color: black;
 }
 
 .task {
@@ -275,6 +250,13 @@ tr {
   align-items: center;
   justify-content: center;
   float: right;
+}
+
+.new a {
+  font-family: "DM Sans", serif;
+  font-weight: 200;
+  font-size: 38px;
+  color: white;
 }
 
 footer {
