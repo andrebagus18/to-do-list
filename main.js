@@ -3,6 +3,7 @@ const modal = document.querySelector(".create");
 const closeButton = document.querySelector(".close");
 const newData = document.querySelector("#newData");
 const tableToday = document.querySelector("#tableToday");
+const tableDone = document.querySelector("#tableDone");
 const tabCreate = document.querySelector(".tab-create");
 
 let months = [
@@ -76,7 +77,6 @@ newData.addEventListener("submit", (e) => {
   console.log(newTask);
   localStorage.setItem("tableData", JSON.stringify(tableData));
 
-  tabCreate.classList.toggle("create-hidden");
   window.location.href = "index.html";
   newData.reset();
 });
@@ -115,6 +115,26 @@ tableData.forEach((item) => {
   // console.log(linkList);
 });
 
+const btnCheck = document.querySelectorAll(".btnCheck");
+btnCheck.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.innerHTML = "&#10004;";
+    btn.style.backgroundColor = "#cbcbcb";
+    const row = btn.closest("tr"); // cari baris
+    row.style.backgroundColor = "#dcdcdc";
+    const taskCell = row.cells[1]; // kolom task
+    taskCell.classList.add("task2");
+    row.remove();
+
+    const tbody = tableDone.getElementsByTagName("tbody")[0];
+    tbody.appendChild(row);
+    // if (row)
+    //   row.addEventListener("click", () => {
+    //     tbody[0] = false;
+    //   });
+  });
+});
+
 const delet = document.querySelector("#hapus");
 delet.addEventListener("click", () => {
   // hapus semua data dari localStorage
@@ -127,15 +147,15 @@ delet.addEventListener("click", () => {
   }
 });
 
-const buttonCheck = document.querySelector(".btnCheck");
-if (buttonCheck) {
-  buttonCheck.addEventListener("click", () => {
-    buttonCheck.forEach((item) => {
-      item.innerHTML = "&#10004;";
-      item.style.backgroundColor = "#cbcbcb";
-    });
-  });
-}
+// const buttonCheck = document.querySelector(".btnCheck");
+// if (buttonCheck) {
+//   buttonCheck.addEventListener("click", () => {
+//     buttonCheck.forEach((item) => {
+//       item.innerHTML = "&#10004;";
+//       item.style.backgroundColor = "#cbcbcb";
+//     });
+//   });
+// }
 
 // tableData.forEach((item, index) => {
 //   const newRow = tbody.insertRow(0);
