@@ -3,14 +3,13 @@ const modal = document.querySelector(".create");
 const closeButton = document.querySelector(".close");
 const newData = document.querySelector("#newData");
 const btnSubmit = document.querySelector(".btn-submit");
-const tableToday = document.querySelector("#tableToday");
 const dones = document.querySelector(".dones");
 const todos = document.querySelector(".todos");
 const overdues = document.querySelector(".overdues");
 const input = document.querySelector(".task");
-const count = document.querySelector("#count1");
 
 buttonCreate.addEventListener("click", () => {
+  console.log(buttonCreate);
   modal.classList.toggle("active");
   input.focus();
   btnSubmit.innerHTML = "Submit";
@@ -125,6 +124,7 @@ function editTask(editId, editTask, editDate, editLevel) {
   newTask.value = editTask;
   category.value = editLevel;
   dateToday.value = editDate;
+  input.focus();
   btnSubmit.innerHTML = "Update";
   closeButton.addEventListener("click", () => {
     modal.classList.remove("active");
@@ -174,7 +174,7 @@ document.addEventListener("click", function (e) {
     todoData = todoData.filter((item) => item.status !== "completed");
   }
   if (tabName === "overdue") {
-    // delete all completed
+    // delete all overdue
     todoData = todoData.filter((item) => !isOverdue(item));
   }
   saveToLocalStorage();

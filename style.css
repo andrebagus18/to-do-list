@@ -57,10 +57,6 @@ main {
   justify-content: center;
 }
 
-.create-hidden {
-  display: none;
-}
-
 .create {
   display: none;
   animation: fadeIn 0.5s;
@@ -380,9 +376,6 @@ footer {
 }
 
 @media screen and (max-width: 425px) {
-  .add-task {
-    display: none;
-  }
   .container {
     min-width: 325px;
     width: 425px;
@@ -390,54 +383,47 @@ footer {
     padding-inline: 12px;
     background-color: #f6f6f6;
   }
-  .new-task {
-    height: 50px;
-    margin-top: 20px;
-    position: absolute;
-    bottom: 350px;
-  }
-  .new a {
-    font-family: "DM Sans", serif;
-    font-weight: 200;
-    font-size: 38px;
-    color: white;
-  }
-
-  .new {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #447794;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    float: right;
-    position: fixed;
-    top: 450px;
-    left: 280px;
-    box-shadow: 2px 2px 18px 2px #797979;
-  }
   h1,
   h3 {
     font-family: "DM Sans", serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 110%;
     letter-spacing: 0.2px;
     color: #061222;
   }
   h1 {
-    font-size: 20px;
+    font-size: 16px;
     color: white;
     margin: 5px 0;
+  }
+
+  .add-task {
+    width: 80px;
+    height: 30px;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .btn-new {
+    font-size: 0;
+    border-radius: 5px;
+    width: 70px;
+    height: 30px;
+    background-color: white;
+    padding: 0 10px;
+    border: none;
+    font-family: "DM Sans", serif;
+    color: #061222;
+  }
+  .btn-new::before {
+    font-size: 16px;
+    content: "Add +";
   }
 }
 
 @media screen and (min-width: 425px) {
-  .new {
-    display: none;
-  }
   .container {
     min-width: 425px;
     width: 768px;
